@@ -97,9 +97,23 @@ utilizando POST http://localhost:8080/forum de body:
   "cursoId": 1
 } a o qual você pode interegir com os comandos:
 
-POST http://localhost:8080/resposta
-GET http://localhost:8080/forum/1
-GET http://localhost:8080/forum
-PUT http://localhost:8080/forum/1
-DELETE http://localhost:8080/forum/1
+POST http://localhost:8080/resposta de body:
+{
+  "topicoId": 1,
+  "mensagem": "Consegui resolver esse problema alterando a configuração.",
+  "autorId": 1,
+  "solucao": false
+} para acresentar uma resopsta ao tópico
+GET http://localhost:8080/forum/1 que não necessita de body e serve para obter informações de um tópico específico
+GET http://localhost:8080/forum que também não necessita de body e pode obter informações de todos os tópicos criados
+PUT http://localhost:8080/forum/1 de body:
+{
+  "titulo": "Erro no código",
+  "mensagem": "Imagem cortada",
+  "dataDeCriacao": "2025-08-17T10:00:00",
+  "estadoDoTopico": "FECHADO",
+  "autorId": 1,
+  "cursoId": 1
+} para alterar um tópico existente
+DELETE http://localhost:8080/forum/1 que não necessita de body e tem a função de apagar um tópico específico, desde de que ele não possua respostas.
 
