@@ -1,4 +1,5 @@
 package br.com.alura.ForumCH.answer;
+
 import br.com.alura.ForumCH.Topico.Topico;
 import br.com.alura.ForumCH.user.Usuario;
 import jakarta.persistence.*;
@@ -24,20 +25,19 @@ public class Respostas {
 
     private String mensagem;
 
-    @Column(name = "data_criacao", nullable = false, updatable = false, insertable = false,
-            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime dataCriacao;
+    @Column(name = "data_criacao", nullable = false, updatable = false)
+    private LocalDateTime dataCriacao = LocalDateTime.now();
 
     @ManyToOne
-    @JoinColumn(name = "usuarios_id", nullable = false)
+    @JoinColumn(name = "autor_id", nullable = false)
     private Usuario autor;
 
     private boolean solucao;
 
-    public Respostas(Topico topico, String mensagem, LocalDateTime dataCriacao, Usuario autor, boolean solucao) {
+
+    public Respostas(Topico topico, String mensagem, Usuario autor, boolean solucao) {
         this.topico = topico;
         this.mensagem = mensagem;
-        this.dataCriacao = dataCriacao;
         this.autor = autor;
         this.solucao = solucao;
     }

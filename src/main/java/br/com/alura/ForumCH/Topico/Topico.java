@@ -13,23 +13,33 @@ import java.util.List;
 
 @Table(name = "topicos")
 @Entity(name = "Topico")
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Topico {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String titulo;
     private String mensagem;
-    private LocalDateTime data_de_criacao;
-    private String estado_do_topico;
+
+    // Alinhando com o banco (data_criacao)
+    @Column(name = "data_criacao", nullable = false)
+    private LocalDateTime dataDeCriacao;
+
+    // Alinhando com o banco (status)
+    @Column(name = "status", nullable = false)
+    private String estadoDoTopico;
+
     @ManyToOne
-    @JoinColumn(name = "usuarios_id", nullable = false)
+    @JoinColumn(name = "autor_id", nullable = false)
     private Usuario autor;
+
     @ManyToOne
-    @JoinColumn(name = "curso_id", nullable = false) // cria chave estrangeira no banco
+    @JoinColumn(name = "curso_id", nullable = false)
     private Curso curso;
 
     @OneToMany(mappedBy = "topico")
@@ -38,10 +48,11 @@ public class Topico {
     public Topico(DadosTopico dados, Usuario autor, Curso curso) {
         this.titulo = dados.titulo();
         this.mensagem = dados.mensagem();
-        this.data_de_criacao = dados.data_de_criacao();
-        this.estado_do_topico = dados.estado_do_topico();
-        this.autor =autor;
-        this.curso =curso;
+        this.dataDeCriacao = dados.dataDeCriacao();
+        this.estadoDoTopico = dados.estadoDoTopico();
+        this.autor = autor;
+        this.curso = curso;
     }
 }
+
 

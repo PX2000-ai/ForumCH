@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/resposta")
-public class RespostaController  {
+public class RespostaController {
 
     @Autowired
     private RespostaRepository repository;
@@ -29,13 +29,7 @@ public class RespostaController  {
         var autor = usuarioRepository.findById(dados.autorId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
-        Respostas resposta = new Respostas(
-                topico,
-                dados.mensagem(),
-                dados.dataCriacao(),
-                autor,
-                dados.solucao()
-        );
+        Respostas resposta = new Respostas(topico, dados.mensagem(), autor, dados.solucao());
 
         repository.save(resposta);
     }

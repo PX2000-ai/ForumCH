@@ -1,2 +1,2 @@
-INSERT INTO perfis (nome) VALUES ('ALUNO');
-INSERT INTO perfis (nome) VALUES ('ADMIN');
+INSERT INTO perfis (id,nome) VALUES (2,'ALUNO');
+INSERT INTO perfis (id,nome) VALUES (1,'ADMIN');

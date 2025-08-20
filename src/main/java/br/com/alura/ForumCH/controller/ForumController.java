@@ -9,7 +9,6 @@ import br.com.alura.ForumCH.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.List;
 
@@ -67,10 +66,11 @@ public class ForumController {
         var curso = cursoRepository.findById(dados.cursoId())
                 .orElseThrow(() -> new RuntimeException("Curso não encontrado!"));
 
+        // Corrigindo setters para camelCase (mesmo campo do entity corrigido)
         topico.setTitulo(dados.titulo());
         topico.setMensagem(dados.mensagem());
-        topico.setData_de_criacao(dados.data_de_criacao());
-        topico.setEstado_do_topico(dados.estado_do_topico());
+        topico.setDataDeCriacao(dados.dataDeCriacao());
+        topico.setEstadoDoTopico(dados.estadoDoTopico());
         topico.setCurso(curso);
 
         topicoRepository.save(topico);
