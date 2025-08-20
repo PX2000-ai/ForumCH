@@ -61,3 +61,45 @@ MySQL instalado e configurado (certifique-se de ter um banco de dados e um usuá
 Crie um banco de dados no MySQL para o projeto como de sua escolha.
 
 Atualize o arquivo src/main/resources/application.properties com as credenciais do seu banco de dados: ao ir na parte de Edit Configurations e Adicionar em Environment Variablesos dados: DATASOURCE_URL=jdbc:mysql://localhost:3306/forumseu banco de dados; DATASOURCE_PASSWORD=sua senha
+<h3>Configuração do Banco de Dados</h3>
+
+Crie um banco de dados no MySQL para o projeto como de sua escolha.
+
+Atualize o arquivo src/main/resources/application.properties com as credenciais do seu banco de dados: ao ir na parte de Edit Configurations e Adicionar em Environment Variablesos dados: DATASOURCE_URL=jdbc:mysql://localhost:3306/forumseu banco de dados; DATASOURCE_PASSWORD=sua senha
+
+<h2>⚙️ Como Operar o Projeto⚙️</h2>
+Ao iniciar o Projeto(Run) você irá ao Postman ou a um programa similar e utilizará POST http://localhost:8080/auth/register
+com o Body: 
+{
+  "nome": "De-sua-escolha",
+  "email": "De-sua-escolha@email.com",
+  "senha": "123456"
+} 
+para então resgitrar o usuário que você deseja utilizar, em caso de fechar o app você não terá que fazer isso novamente para
+este usuário, e depois utilizará POST http://localhost:8080/auth/login com o body:
+{
+  "email": igual ao do register,
+  "senha": igual ao do register
+}
+Para se conectar e obter JWT (JSON Web Token), cada vez que o app se reiniciar você de refazer seu login.
+com JWT (JSON Web Token) copiado e aplicado você pode utilizar POST http://localhost:8080/curso com body:
+{
+  "nome": "JavaScript 3",
+  "categoria": "FRONT_END"
+} nas Categorias FRONT_END, BACK_END e DATA_SCIENCE para gerar um curso ao qual você pode abrir um tópico
+utilizando POST http://localhost:8080/forum de body: 
+{
+  "titulo": "Erro no código",
+  "mensagem": "Imagem cortada",
+  "dataDeCriacao": "2025-08-17T10:00:00",
+  "estadoDoTopico": "ABERTO",
+  "autorId": 1,
+  "cursoId": 1
+} a o qual você pode interegir com os comandos:
+
+POST http://localhost:8080/resposta
+GET http://localhost:8080/forum/1
+GET http://localhost:8080/forum
+PUT http://localhost:8080/forum/1
+DELETE http://localhost:8080/forum/1
+
